@@ -137,8 +137,8 @@ function drawMandalaGrid(ctx) {
 }
 
 function startDraw(e) {
-    e.preventDefault();
     if(e.pageX > width) return;
+    e.preventDefault();
     drawing = true;
 
     // set start position for drawing shapes
@@ -225,8 +225,8 @@ function checkToFill(data, x, y, w, h, selectedColor) {
 }
 
 function draw(e) {
-    e.preventDefault();
     if(e.pageX > width) return;
+    e.preventDefault();
     currPos = new Point(e.pageX, e.pageY);
 
     let penSize = parseFloat(sizePicker.value);
