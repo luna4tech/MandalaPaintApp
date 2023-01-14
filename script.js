@@ -137,6 +137,7 @@ function drawMandalaGrid(ctx) {
 }
 
 function startDraw(e) {
+    e.preventDefault();
     if(e.pageX > width) return;
     drawing = true;
 
@@ -224,6 +225,7 @@ function checkToFill(data, x, y, w, h, selectedColor) {
 }
 
 function draw(e) {
+    e.preventDefault();
     if(e.pageX > width) return;
     currPos = new Point(e.pageX, e.pageY);
 
