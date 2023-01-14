@@ -242,6 +242,7 @@ function draw(e) {
     else {
         penCursor.style.display = "none";
         myCanvas.style.cursor = "crosshair";
+        gridCanvas.style.cursor = "crosshair";
     }
 
     if (!drawing) return;
