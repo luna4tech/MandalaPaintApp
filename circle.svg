@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20">
+    <g><defs>
+        <ref id="fill" param="fill" default="red" />
+        <ref id="size" param="size" default="10" />
+    </defs>
+    <circle cx="url(#size)" cy="url(#size)" r="url(#size)" fill="url(#fill)" />
+</g>
+    <!-- <circle cx="10" cy="10" r="10" fill="red" /> -->
+    <script type="text/ecmascript" xlink:href="https://dev.w3.org/SVG/modules/ref/master/ref2.js"></script>
+</svg>

@@ -1,0 +1,58 @@
+body {
+  overflow: hidden;
+}
+
+canvas {
+  cursor: none;
+  position: absolute;
+}
+
+.myCanvas {
+  z-index: 10;
+}
+
+.gridCanvas {
+  z-index: 5;
+}
+
+.pen {
+  display: none;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 100;
+}
+
+.toolbar {
+  position: absolute;
+  right: 0;
+  background-color: rgba(255, 255, 255, 1);
+  height: 100%;
+}
+
+input[type="color"] {
+  border: 0;
+}
+
+input[type="range"] {
+  height: 10px;
+}
+
+.form-check-inline {
+  margin-right: 0;
+  padding: 0;
+}
+
+.btn-outline-secondary {
+  width: 100px;
+}
+
+.form-label {
+  vertical-align: top;
+}
+
+.fa {
+  font-size: 32px;
+}
