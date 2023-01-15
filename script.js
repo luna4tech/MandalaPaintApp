@@ -19,7 +19,7 @@ let prevPos; // previous mouse position when it is moving - used for mandala
 let currPos; // current mouse position 
 let drawing = false; // to indicate if mouse if pressed
 let snapshot; // image data of current frame 
-let undoStack = [], redoStack = [];
+let undoStack = [], redoStack = [], lastStep;
 
 
 // variables from user input
@@ -57,7 +57,7 @@ document.getElementById('showGrid').addEventListener(
 document.getElementById('sectorCount').addEventListener(
     'input', () => {
         sectorCount = parseInt(document.getElementById('sectorCount').value);
-        drawMandalaGrid(grid_ctx);
+        if(showGrid) drawMandalaGrid(grid_ctx);
     }
 )
 
@@ -87,12 +87,19 @@ const redoBtn = document.querySelector('.redoButton');
 undoBtn.addEventListener('click', undo);
 redoBtn.addEventListener('click', redo);
 
+ctx.clearRect(0, 0, width, height);
+trackStep();
 
 // undo redo functions
 function trackStep() {
+    if(lastStep == "undo" || lastStep == "redo") {
+        redoStack = [];
+        redoBtn.disabled = (redoStack.length == 0);
+    }
     if (undoStack.length <= UNDO_LIMIT) {
         undoStack.push(ctx.getImageData(0, 0, width, height));
         undoBtn.disabled = (undoStack.length <= 1);
+        lastStep = "track";
     }
 }
 
@@ -107,6 +114,7 @@ function undo() {
 
     redoBtn.disabled = (redoStack.length == 0);
     undoBtn.disabled = (undoStack.length <= 1);
+    lastStep = "undo";
 }
 
 function redo() {
@@ -120,6 +128,7 @@ function redo() {
 
     redoBtn.disabled = (redoStack.length == 0);
     undoBtn.disabled = (undoStack.length <= 1);
+    lastStep = "redo";
 }
 
 // functions to draw on canvas
@@ -169,6 +178,7 @@ function startDraw(e) {
         let userEnteredText = prompt("Enter the text: ");
         if (userEnteredText) {
             ctx.fillText(userEnteredText, currPos.x, currPos.y);
+            trackStep();
         }
         drawing = false;
     }
@@ -285,7 +295,7 @@ function draw(e) {
 function finishDraw(e) {
     if(e.pageX > width) return;
     drawing = false;
-    trackStep();
+    if(type != "text") trackStep();
 }
 
 //utils
